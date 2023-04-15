@@ -8,7 +8,7 @@ const createCustomer = async (req, res) => {
   const resEmail = await customersDao.findCustomerByEmail(newUser.email);
   if (resEmail) {
     // res.json({"error": true, "message": "Email exists."});
-    res.status(404).json({error: "Email exists."});
+    res.status(404).json({"Error": "Email exists."});
   }
   else {
     const customer = await customersDao.createCustomer(newUser);
@@ -26,12 +26,12 @@ const findCustomerByLogin = async (req, res) => {
   const customer = await customersDao.findCustomerByLogin(email, password);
   if (!resEmail) {
     // res.json({"error": true, "message": "Email does not exist."});
-    res.status(404).json({error: "Email does not exist."});
+    res.status(404).json({"Error": "Email does not exist."});
     return;
   }
   if (!customer) {
     // res.json({"error": true, "message": "Wrong passwords."});
-    res.status(404).json({error: "Wrong passwords."});
+    res.status(404).json({"Error": "Wrong passwords."});
   }
   else {
     // return one json file
