@@ -10,7 +10,8 @@ const schema = mongoose.Schema(
   icon: {type: String, default: "default-icon.jpg"},
   bg: {type: String, default: "default-background.jpg"},
   following: {type: [mongoose.Schema.Types.ObjectId], default: []},
-  follower: {type: [mongoose.Schema.Types.ObjectId], default: []}
+  follower: {type: [mongoose.Schema.Types.ObjectId], default: []},
+  role: {type: String, default: "customer"}
   }, 
   {collection: 'customers'}
 );

@@ -11,7 +11,8 @@ const schema = mongoose.Schema(
   bg: {type: String, default: "default-background.jpg"},
   address: {type: String, default: ""},
   website: {type: String, default: ""},
-  businesshour: {type: String, default: ""}
+  businesshour: {type: String, default: ""},
+  role: {type: String, default: "seller"}
   }, 
   {collection: 'sellers'}
 );
