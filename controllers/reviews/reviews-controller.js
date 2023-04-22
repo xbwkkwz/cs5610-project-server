@@ -16,6 +16,15 @@ const findReviewByCustomerId = async (req, res) => {
   else res.json([]);
 }
 
+const findReviewByCustomerFollowing = async (req, res) => {
+  const idArrayStr = req.params['idArrayStr'];
+  const idArray = idArrayStr.split(",");
+  const reviews = await reviewsDao.findReviewByCustomerFollowing(idArray);
+  // could return empty array
+  if (reviews) res.json(reviews);
+  else res.json([]);
+}
+
 const findReviewByMovieId = async (req, res) => {
   const id = req.params['mid'];
   const reviews = await reviewsDao.findReviewByMovieId(id);
@@ -50,6 +59,7 @@ export default (app) => {
 
   app.get('/reviews/movie/:mid', findReviewByMovieId);
   app.get('/reviews/customer/:id', findReviewByCustomerId);
+  app.get('/reviews/customerFollowing/:idArrayStr', findReviewByCustomerFollowing);
 
   app.put('/reviews/:rid', updateReview);
 

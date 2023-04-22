@@ -3,6 +3,7 @@ import reviewsModel from './reviews-model.js';
 export const createReview = (jsonData) => reviewsModel.create(jsonData);
 
 export const findReviewByCustomerId = (id) => reviewsModel.find({customerid: id});
+export const findReviewByCustomerFollowing = (idArray) => reviewsModel.find({customerid: {$in: idArray}});
 export const findReviewByMovieId = (id) => reviewsModel.find({movieid: id});
 
 export const updateReview = (id, updates) => reviewsModel.updateOne({_id: id}, {$set: updates});
