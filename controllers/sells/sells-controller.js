@@ -24,6 +24,14 @@ const findSellByMovieId = async (req, res) => {
   else res.json([]);
 }
 
+const findSellByTime = async (req, res) => {
+  // const id = req.params['mid'];
+  const sells = await sellsDao.findSellByTime();
+  // could return empty array
+  if (sells) res.json(sells);
+  else res.json([]);
+}
+
 const updateSell = async (req, res) => {
   const id = req.params['sid'];
   const updates = req.body;
@@ -50,6 +58,7 @@ export default (app) => {
 
   app.get('/sells/movie/:mid', findSellByMovieId);
   app.get('/sells/seller/:id', findSellBySellerId);
+  app.get('/sells/recent', findSellByTime);
 
   app.put('/sells/:sid', updateSell);
 

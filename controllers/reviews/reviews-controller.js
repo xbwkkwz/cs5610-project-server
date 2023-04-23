@@ -8,12 +8,12 @@ const createReview = async (req, res) => {
   res.json(review);
 }
 
-const findReviewById = async (req, res) => {
-  const id = req.params['id'];
-  const review = await reviewsDao.findReviewById(id);
-  if (review) res.json(review);
-  else res.json({});
-}
+// const findReviewById = async (req, res) => {
+//   const id = req.params['id'];
+//   const review = await reviewsDao.findReviewById(id);
+//   if (review) res.json(review);
+//   else res.json({});
+// }
 
 const findReviewByCustomerId = async (req, res) => {
   const id = req.params['id'];
@@ -35,6 +35,14 @@ const findReviewByCustomerFollowing = async (req, res) => {
 const findReviewByMovieId = async (req, res) => {
   const id = req.params['mid'];
   const reviews = await reviewsDao.findReviewByMovieId(id);
+  // could return empty array
+  if (reviews) res.json(reviews);
+  else res.json([]);
+}
+
+const findReviewByTime = async (req, res) => {
+  // const id = req.params['mid'];
+  const reviews = await reviewsDao.findReviewByTime();
   // could return empty array
   if (reviews) res.json(reviews);
   else res.json([]);
@@ -64,10 +72,11 @@ const deleteReviewByCustomerId = async (req, res) => {
 export default (app) => {
   app.post('/reviews', createReview);
 
-  app.get('/reviews/:id', findReviewById);
   app.get('/reviews/movie/:mid', findReviewByMovieId);
   app.get('/reviews/customer/:id', findReviewByCustomerId);
   app.get('/reviews/customerFollowing/:idArrayStr', findReviewByCustomerFollowing);
+  // app.get('/reviews/:id', findReviewById);
+  app.get('/reviews/recent', findReviewByTime);
 
   app.put('/reviews/:rid', updateReview);
 

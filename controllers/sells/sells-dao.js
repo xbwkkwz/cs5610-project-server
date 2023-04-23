@@ -4,6 +4,7 @@ export const createSell = (jsonData) => sellsModel.create(jsonData);
 
 export const findSellBySellerId = (id) => sellsModel.find({sellerid: id});
 export const findSellByMovieId = (id) => sellsModel.find({movieid: id});
+export const findSellByTime = () => sellsModel.find().sort({$natural: -1}).limit(10);
 
 export const updateSell = (id, updates) => sellsModel.updateOne({_id: id}, {$set: updates});
 
