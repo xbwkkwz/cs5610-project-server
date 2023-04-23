@@ -70,5 +70,5 @@ export default (app) => {
 
   app.put('/sellers/:id', updateSeller);
 
-  app.delete('sellers/:id', deleteSeller);
+  app.delete('/sellers/:id', deleteSeller);
 }
