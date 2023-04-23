@@ -73,4 +73,8 @@ export default (app) => {
 
   app.delete('/reviews/:rid', deleteReview);
   app.delete('/reviews/customer/:id', deleteReviewByCustomerId);
+
+  // v2
+  app.get('/details/:mid/reviews', findReviewByMovieId);
+
 }
