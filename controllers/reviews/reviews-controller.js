@@ -8,6 +8,13 @@ const createReview = async (req, res) => {
   res.json(review);
 }
 
+const findReviewById = async (req, res) => {
+  const id = req.params['id'];
+  const review = await reviewsDao.findReviewById(id);
+  if (review) res.json(review);
+  else res.json({});
+}
+
 const findReviewByCustomerId = async (req, res) => {
   const id = req.params['id'];
   const reviews = await reviewsDao.findReviewByCustomerId(id);
@@ -57,6 +64,7 @@ const deleteReviewByCustomerId = async (req, res) => {
 export default (app) => {
   app.post('/reviews', createReview);
 
+  app.get('/reviews/:id', findReviewById);
   app.get('/reviews/movie/:mid', findReviewByMovieId);
   app.get('/reviews/customer/:id', findReviewByCustomerId);
   app.get('/reviews/customerFollowing/:idArrayStr', findReviewByCustomerFollowing);
